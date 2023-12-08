@@ -1,0 +1,70 @@
+{% block content %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .navbar-container {
+        background-color: #007bff; 
+        color: #fff; 
+        padding: 10px;
+        text-align: center;
+    }
+
+    .content-container {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .deletion-container {
+        text-align: center;
+        border: 2px solid #333;
+        padding: 20px;
+        border-radius: 8px;
+        background-color: #f8f9fa; 
+    }
+
+    p {
+        color: #333;
+    }
+
+    form {
+        margin-top: 20px;
+    }
+
+    a {
+        text-decoration: none;
+        color: #007bff;
+        margin-right: 10px;
+    }
+
+    input[type="submit"] {
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        cursor: pointer;
+    }
+</style>
+{% include 'navbar.html' %}
+
+<div class="content-container">
+    <div class="deletion-container">
+        <p>Are you sure you want to delete task "{{item}}"?</p>
+        <form action="{% url 'delete_task' item.id %}" method="post"> 
+            {% csrf_token %}
+            <a href="{% url 'home' %}" class="cancel-link">cancel</a>
+            <input class="btn btn-danger rounded-pill px-3" type="submit" name="confirm" class="confirm-button" value="Delete">
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+{% include 'footer.html' %}
