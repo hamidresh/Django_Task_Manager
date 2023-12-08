@@ -19,6 +19,7 @@ class Task(models.Model):
     priority = models.CharField(max_length=20, choices=[('low', 'Low'), ('medium', 'Medium'), ('high', 'High')])
     status = models.CharField(max_length=20, choices=[('todo', 'To Do'), ('in_progress', 'In Progress'), ('done', 'Done')])
     deadline = models.DateField(null=True, blank=True)
+    image = models.ImageField(upload_to='task_images/',null=True , blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tasks')
 
     def __str__(self):

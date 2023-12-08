@@ -73,7 +73,7 @@ def create_task(request):
     form = TaskForm()
     user = User.objects.all()
     if request.method == 'POST' :
-        form = TaskForm(request.POST)
+        form = TaskForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
             return redirect('/')
@@ -93,7 +93,7 @@ def update_task(request,pk):
     user_id = Task.objects.get(id=pk)
     form = TaskForm(instance=user_id)
     if request.method == 'POST':
-        form = TaskForm(request.POST , instance=user_id)
+        form = TaskForm(request.POST , request.FILES ,instance=user_id)
         if form.is_valid():
             form.save()
             return redirect('/')

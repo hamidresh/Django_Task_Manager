@@ -53,6 +53,26 @@
         strong {
             color: #007BFF;
         }
+
+        .user-profile-picture {
+        width: 200px; /* Set the width of the image container */
+        height: 120px; /* Set the height of the image container */
+        border-radius: 8px; /* Add some border radius for a slightly rounded appearance */
+        overflow: hidden; /* Hide any part of the image that exceeds the rectangular border */
+        float: right; /* Float the image container to the left side */
+        margin-right: 20px; /* Add some margin for spacing */
+
+        /* Additional styles to ensure the image fits within the container */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .user-profile-picture img {
+        width: 100%; /* Make the image fill the container */
+        height: 100%; /* Make the image fill the container */
+        object-fit: cover; /* Ensure the image maintains its aspect ratio and covers the entire container */
+    }
     </style>
 </head>
 <body>
@@ -77,6 +97,11 @@
                     Priority: {{ task.get_priority_display }}<br>
                     Status: {{ task.get_status_display }}<br>
                     Deadline: {{ task.deadline|default:"No deadline" }}<br>
+                    <div class="user-profile-picture">
+                    {% if task.image %}
+                     <img src="{{ task.image.url }}" >
+                    {% endif %}
+                </div>
                     <a type="button" class="btn btn-primary btn-sm" href="{% url 'update_task' pk=task.id %}">update task</a>
                     <a type="button" class="btn btn-primary btn-sm" style="background-color: #E9A8A8; border-color: #E9A8A8;" href="{% url 'delete_task' pk=task.id %}">delete task</a>
 
