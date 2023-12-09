@@ -96,13 +96,15 @@
                     <strong>{{ task.title }}</strong><br>
                     Description: {{ task.description|default:"No description" }}<br>
                     Priority: {{ task.get_priority_display }}<br>
-                    Status: {{ task.get_status_display }}<br>
-                    Deadline: {{ task.deadline|default:"No deadline" }}<br>
                     <div class="user-profile-picture" >
                     {% if task.image %}
-                     <img src="{{ task.image.url }}" >
+                    <img src="{{ task.image.url }}" >
                     {% endif %}
-                </div>
+                    </div>
+
+                    Status: {{ task.get_status_display }}<br>
+                    Deadline: {{ task.deadline|default:"No deadline" }}<br>
+
                     <a type="button" class="btn btn-primary btn-sm" href="{% url 'update_task' pk=task.id %}" style="background-color: #3E8CA7; border-color: #3E8CA7;" >update task</a>
                     <a type="button" class="btn btn-primary btn-sm" style="background-color: #BF6564; border-color: #BF6564;" href="{% url 'delete_task' pk=task.id %}">delete task</a>
 
