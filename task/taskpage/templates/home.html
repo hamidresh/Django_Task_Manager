@@ -31,7 +31,7 @@
         }
         h1 {
             color: #333;
-            margin-left: 15px;
+            margin-left: 90px;
         }
         h2 {
             color: #333;
@@ -97,7 +97,7 @@
                     Priority: {{ task.get_priority_display }}<br>
                     Status: {{ task.get_status_display }}<br>
                     Deadline: {{ task.deadline|default:"No deadline" }}<br>
-                    <div class="user-profile-picture">
+                    <div class="user-profile-picture" >
                     {% if task.image %}
                      <img src="{{ task.image.url }}" >
                     {% endif %}
